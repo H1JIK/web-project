@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Заявки участников</h1>
+{% for item in projects%}
+{% if item.is_confirmed %}
+<div class="col-md6 border rounded">
+    <a href="/viewing_project/{{ item.id }}" class="text-decoration-none text-reset"><h3>{{item.heading}}</h3></a>
+    <div>
+        Дата написания - {{item.created_date}}
+    </div>
+    {% endif %}
+</div><br>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Неоцененные заявки</h1>
+{% for item in projects %}
+{% if not item.is_confirmed and current_user.is_developer and current_user.is_authenticated %}
+<div class="col-md6 border rounded">
+    <a href="/viewing_project/{{ item.id }}" class="text-decoration-none text-reset"><h3>{{item.heading}}</h3></a>
+<!--    <a href="/developer_panel/projects_approve/{{ item.id }}" class="btn btn-outline-warning">-->
+<!--            Одобрить-->
+<!--        </a>-->
+    <a href="/score_submission/{{ item.id }}" class="btn btn-outline-success">Оценить</a>
+    <!--<div>
+        <h5>{{item.content}}</h5>
+    </div>-->
+    <div>
+        Автор - {{item.user.name}}, Дата написания - {{item.created_date}}
+    </div>
+</div>
+{% endif %}
+<br>
+{% endfor %}
+{% endblock %}
